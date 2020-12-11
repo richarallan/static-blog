@@ -15,19 +15,22 @@ const BlogPost = ({ data, pageContext }) => {
 
     return (
         <Layout>
-            <SEO title={ post.frontmatter.title }/>
+            <SEO 
+                title={ post.frontmatter.title }
+                description={post.frontmatter.description}
+                image={post.frontmatter.image}
+            />
             <S.PostHeader>
                 <S.PostDate>
                     {post.frontmatter.date} • {post.timeToRead} min de leitura
                 </S.PostDate>
-                <S.PostTitle><h1>{post.frontmatter.title}</h1></S.PostTitle>
+                <S.PostTitle>{post.frontmatter.title}</S.PostTitle>
                 <S.PostDescription>{post.frontmatter.PostDescription}</S.PostDescription>
             </S.PostHeader>
             <S.MainContent>
             <div dangerouslySetInnerHTML = {{ __html: post.html}}></div>
             </S.MainContent>
             <RecommendedPosts next={next} previous={previous} />
-
             <Comments url={post.fields.slug} title={post.frontmatter.title} />
         </Layout>
     )
